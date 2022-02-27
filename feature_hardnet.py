@@ -117,7 +117,7 @@ class HardnetFeature2D:
                         
         # mag_factor is how many times the original keypoint scale
         # is enlarged to generate a patch from a keypoint        
-        self.mag_factor = 1.0
+        self.mag_factor = 12.0
         
         # inference batch size        
         self.batch_size = 512 
@@ -156,11 +156,14 @@ class HardnetFeature2D:
     def compute_des(self, patches):                  
         patches = torch.from_numpy(patches).float()
         patches = torch.unsqueeze(patches,1)
-        if self.do_cuda:
-            patches = patches.cuda()
-        with torch.no_grad():            
-            descrs = self.model(patches)
-        return descrs.detach().cpu().numpy().reshape(-1, 128)    
+        descrs = []
+        for P in range(0, patches.shape[0], 1024):
+          if self.do_cuda:
+            p = patches[P:P+1024].cuda()
+          with torch.no_grad():            
+              descrs.append(self.model(p).detach().cpu().numpy().reshape(-1, 128)) 
+        descrs = np.concatenate(descrs, axis=0)
+        return descrs
                    
                   
     def compute(self, img, kps, mask=None):  #mask is a fake input  
