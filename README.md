@@ -1,4 +1,4 @@
-# pySLAM v2 
+# pySLAM v2_
 
 Author: [Luigi Freda](https://www.luigifreda.com)
 
