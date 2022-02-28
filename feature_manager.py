@@ -43,6 +43,9 @@ SuperPointFeature2D = import_from('feature_superpoint', 'SuperPointFeature2D')
 TfeatFeature2D = import_from('feature_tfeat', 'TfeatFeature2D')     
 Orbslam2Feature2D = import_from('feature_orbslam2', 'Orbslam2Feature2D')  
 HardnetFeature2D = import_from('feature_hardnet', 'HardnetFeature2D')
+BROWN6Feature2D = import_from('feature_BROWN6', 'BROWN6Feature2D')
+UAVPatchesFeature2D = import_from('feature_UAVPatches', 'UAVPatchesFeature2D')
+UAVPatchesPlusFeature2D = import_from('feature_UAVPatchesPlus', 'UAVPatchesPlusFeature2D')
 GeodescFeature2D = import_from('feature_geodesc', 'GeodescFeature2D')
 SosnetFeature2D = import_from('feature_sosnet', 'SosnetFeature2D')
 if False:
@@ -596,6 +599,18 @@ class FeatureManager(object):
                 #       
             elif self.descriptor_type == FeatureDescriptorTypes.HARDNET:              
                 self._feature_descriptor = HardnetFeature2D(do_cuda=True)        
+                #
+                #      
+            elif self.descriptor_type == FeatureDescriptorTypes.BROWN6:              
+                self._feature_descriptor = BROWN6Feature2D(do_cuda=True)        
+                #
+                #      
+            elif self.descriptor_type == FeatureDescriptorTypes.UAVPatches:              
+                self._feature_descriptor = UAVPatchesFeature2D(do_cuda=True)        
+                #
+                #      
+            elif self.descriptor_type == FeatureDescriptorTypes.UAVPatchesPlus:              
+                self._feature_descriptor = UAVPatchesPlusFeature2D(do_cuda=True)        
                 #
                 #      
             elif self.descriptor_type == FeatureDescriptorTypes.GEODESC:              
