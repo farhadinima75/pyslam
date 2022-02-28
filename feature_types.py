@@ -156,13 +156,13 @@ class FeatureInfo(object):
     norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.HARDNET] = 1.8       # HARDNET          
     #
-    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    norm_type[FeatureDescriptorTypes.BROWN6] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.BROWN6] = 1.8       # HARDNET          
     #
-    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    norm_type[FeatureDescriptorTypes.UAVPatches] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.UAVPatches] = 1.8       # HARDNET          
     #
-    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    norm_type[FeatureDescriptorTypes.UAVPatchesPlus] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.UAVPatchesPlus] = 1.8       # HARDNET          
     #
     norm_type[FeatureDescriptorTypes.GEODESC] = cv2.NORM_L2             # unless GeodescFeature2D.quantize == True 
