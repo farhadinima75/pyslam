@@ -186,12 +186,13 @@ class R2d2Feature2D:
         self.reliability_thr = reliability_thr
         self.repeatability_thr = repeatability_thr
         self.do_cuda = do_cuda & torch.cuda.is_available()
-        if do_cuda:                  
+        if self.do_cuda:                  
             gpus = [0]
         else:
             gpus = -1 
         self.gpus = gpus 
-        self.do_cuda = common.torch_set_gpu(gpus)   
+        if self.do_cuda:   
+          self.do_cuda = common.torch_set_gpu(gpus)   
                                             
         print('==> Loading pre-trained network.')   
                   
