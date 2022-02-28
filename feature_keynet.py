@@ -386,7 +386,8 @@ class KeyNetDescFeature2D:
             patch_batch = self.session.run(self.input_patches, feed_dict=feed_dict)
             patch_batch = np.reshape(patch_batch, (patch_batch.shape[0], 1, 32, 32))
             data_a = torch.from_numpy(patch_batch)
-            data_a = data_a.cuda()
+            if self.do_cuda:
+                data_a = data_a.cuda()
             data_a = Variable(data_a)
             with torch.no_grad():
                 out_a = self.model(data_a)
