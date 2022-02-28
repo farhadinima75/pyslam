@@ -61,36 +61,39 @@ class FeatureDetectorTypes(Enum):
     DISK        = 24  # [end-to-end] joint detector-descriptor - "DISK: Learning local features with policy gradient"
 
 class FeatureDescriptorTypes(Enum):
-    NONE        = 0   # used for LK tracker (in main_vo.py)
-    SIFT        = 1   # "Object Recognition from Local Scale-Invariant Features"
-    ROOT_SIFT   = 2   # "Three things everyone should know to improve object retrieval"
-    SURF        = 3   # "SURF: Speeded Up Robust Features"
-    ORB         = 4   # [binary] "ORB: An efficient alternative to SIFT or SURF"
-    ORB2        = 5   # [binary] interface for ORBSLAM2 features     
-    BRISK       = 6   # [binary] "BRISK: Binary Robust Invariant Scalable Keypoints"    
-    KAZE        = 7   # only with KAZE or AKAZE detectors - "KAZE Features"
-    AKAZE       = 8   # [binary] only with KAZE or AKAZE detectors - "Fast Explicit Diffusion for Accelerated Features in Nonlinear Scale Spaces"
-    FREAK       = 9   # [binary] only descriptor - "FREAK: Fast retina keypoint"
-    SUPERPOINT  = 10  # [end-to-end] only with SUPERPOINT detector - "SuperPoint: Self-Supervised Interest Point Detection and Description"
-    TFEAT       = 11  # only descriptor - " Learning local feature descriptors with triplets and shallow convolutional neural networks"
-    BOOST_DESC  = 12  # [binary] only descriptor - "Learning Image Descriptors with Boosting" 
-    DAISY       = 13  # only descriptor - "Daisy: An efficient dense descriptor applied to wide baseline stereo" 
-    LATCH       = 14  # [binary] only descriptor - "LATCH: Learned Arrangements of Three Patch Codes" 
-    LUCID       = 15  # [binary] only descriptor - "Locally uniform comparison image descriptor" - (it requires a color image) <-- !N.B.: not producing good results!
-    VGG         = 16  # only descriptor - "Learning local feature descriptors using convex optimisation" 
-    HARDNET     = 17  # only descriptor - "Working hard to know your neighbor’s margins: Local descriptor learning loss"
-    GEODESC     = 18  # only descriptor - "GeoDesc: Learning Local Descriptors by Integrating Geometry Constraints"
-    SOSNET      = 19  # only descriptor - "SOSNet:Second Order Similarity Regularization for Local Descriptor Learning"
-    L2NET       = 20  # only descriptor - "L2-Net: Deep Learning of Discriminative Patch Descriptor in Euclidean Space"
-    LOGPOLAR    = 21  # only descriptor - "Beyond Cartesian Representations for Local Descriptors"
-    D2NET       = 22  # [end-to-end] joint detector-descriptor (only with D2NET detector) - "D2-Net: A Trainable CNN for Joint Detection and Description of Local Features".  
-    DELF        = 23  # [end-to-end] joint detector-descriptor (only with DELF detector) - "Large-Scale Image Retrieval with Attentive Deep Local Features".
-    CONTEXTDESC = 24  # [end-to-end] only with CONTEXTDESC detector - "ContextDesc: Local Descriptor Augmentation with Cross-Modality Context"      
-    LFNET       = 25  # [end-to-end] joint detector-descriptor (only with LFNET detector) - "LF-Net: Learning Local Features from Images"
-    R2D2        = 26  # [end-to-end] joint detector-descriptor (only with R2D2 detector) - "R2D2: Repeatable and Reliable Detector and Descriptor" 
-    KEYNET      = 27  # keynet descriptor is HARDNET (only with KEYNET detector) - "Key.Net: Keypoint Detection by Handcrafted and Learned CNN Filters"   
-    BEBLID      = 28  # [binary] only descriptor - " BEBLID: Boosted Efficient Binary Local Image Descriptor"              
-    DISK        = 29  # [end-to-end] joint detector-descriptor - "DISK: Learning local features with policy gradient"    
+    NONE            = 0   # used for LK tracker (in main_vo.py)
+    SIFT            = 1   # "Object Recognition from Local Scale-Invariant Features"
+    ROOT_SIFT       = 2   # "Three things everyone should know to improve object retrieval"
+    SURF            = 3   # "SURF: Speeded Up Robust Features"
+    ORB             = 4   # [binary] "ORB: An efficient alternative to SIFT or SURF"
+    ORB2            = 5   # [binary] interface for ORBSLAM2 features     
+    BRISK           = 6   # [binary] "BRISK: Binary Robust Invariant Scalable Keypoints"    
+    KAZE            = 7   # only with KAZE or AKAZE detectors - "KAZE Features"
+    AKAZE           = 8   # [binary] only with KAZE or AKAZE detectors - "Fast Explicit Diffusion for Accelerated Features in Nonlinear Scale Spaces"
+    FREAK           = 9   # [binary] only descriptor - "FREAK: Fast retina keypoint"
+    SUPERPOINT      = 10  # [end-to-end] only with SUPERPOINT detector - "SuperPoint: Self-Supervised Interest Point Detection and Description"
+    TFEAT           = 11  # only descriptor - " Learning local feature descriptors with triplets and shallow convolutional neural networks"
+    BOOST_DESC      = 12  # [binary] only descriptor - "Learning Image Descriptors with Boosting" 
+    DAISY           = 13  # only descriptor - "Daisy: An efficient dense descriptor applied to wide baseline stereo" 
+    LATCH           = 14  # [binary] only descriptor - "LATCH: Learned Arrangements of Three Patch Codes" 
+    LUCID           = 15  # [binary] only descriptor - "Locally uniform comparison image descriptor" - (it requires a color image) <-- !N.B.: not producing good results!
+    VGG             = 16  # only descriptor - "Learning local feature descriptors using convex optimisation" 
+    HARDNET         = 17  # only descriptor - "Working hard to know your neighbor’s margins: Local descriptor learning loss"
+    GEODESC         = 18  # only descriptor - "GeoDesc: Learning Local Descriptors by Integrating Geometry Constraints"
+    SOSNET          = 19  # only descriptor - "SOSNet:Second Order Similarity Regularization for Local Descriptor Learning"
+    L2NET           = 20  # only descriptor - "L2-Net: Deep Learning of Discriminative Patch Descriptor in Euclidean Space"
+    LOGPOLAR        = 21  # only descriptor - "Beyond Cartesian Representations for Local Descriptors"
+    D2NET           = 22  # [end-to-end] joint detector-descriptor (only with D2NET detector) - "D2-Net: A Trainable CNN for Joint Detection and Description of Local Features".  
+    DELF            = 23  # [end-to-end] joint detector-descriptor (only with DELF detector) - "Large-Scale Image Retrieval with Attentive Deep Local Features".
+    CONTEXTDESC     = 24  # [end-to-end] only with CONTEXTDESC detector - "ContextDesc: Local Descriptor Augmentation with Cross-Modality Context"      
+    LFNET           = 25  # [end-to-end] joint detector-descriptor (only with LFNET detector) - "LF-Net: Learning Local Features from Images"
+    R2D2            = 26  # [end-to-end] joint detector-descriptor (only with R2D2 detector) - "R2D2: Repeatable and Reliable Detector and Descriptor" 
+    KEYNET          = 27  # keynet descriptor is HARDNET (only with KEYNET detector) - "Key.Net: Keypoint Detection by Handcrafted and Learned CNN Filters"   
+    BEBLID          = 28  # [binary] only descriptor - " BEBLID: Boosted Efficient Binary Local Image Descriptor"              
+    DISK            = 29  # [end-to-end] joint detector-descriptor - "DISK: Learning local features with policy gradient"
+    BROWN6          = 30  # ------
+    UAVPatches      = 31  # ------
+    UAVPatchesPlus  = 32  # ------
     
 class FeatureInfo(object): 
     norm_type = dict() 
@@ -152,6 +155,15 @@ class FeatureInfo(object):
     #
     norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.HARDNET] = 1.8       # HARDNET          
+    #
+    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    max_descriptor_distance[FeatureDescriptorTypes.BROWN6] = 1.8       # HARDNET          
+    #
+    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    max_descriptor_distance[FeatureDescriptorTypes.UAVPatches] = 1.8       # HARDNET          
+    #
+    norm_type[FeatureDescriptorTypes.HARDNET] = cv2.NORM_L2    
+    max_descriptor_distance[FeatureDescriptorTypes.UAVPatchesPlus] = 1.8       # HARDNET          
     #
     norm_type[FeatureDescriptorTypes.GEODESC] = cv2.NORM_L2             # unless GeodescFeature2D.quantize == True 
     max_descriptor_distance[FeatureDescriptorTypes.GEODESC] = 0.4       # GEODESC         
