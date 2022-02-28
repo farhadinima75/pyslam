@@ -127,7 +127,7 @@ class HardnetFeature2D:
         self.model = HardNet()
         self.checkpoint = torch.load(self.model_weights_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(self.checkpoint['state_dict'])
-        if self.do_cuda and torch.cuda.is_available():
+        if self.do_cuda:
             self.model.cuda()
             print('Extracting on GPU')
         else:
@@ -143,7 +143,7 @@ class HardnetFeature2D:
         for i in range(0, len(patches), self.batch_size):
             data_a = patches[i: i + self.batch_size, :, :, :].astype(np.float32)
             data_a = torch.from_numpy(data_a)
-            if self.do_cuda and torch.cuda.is_available():
+            if self.do_cuda:
                 data_a = data_a.cuda()
             data_a = Variable(data_a)
             # compute output
