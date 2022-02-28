@@ -85,7 +85,7 @@ class TfeatFeature2D:
             descrs = self.model(patches)
         return descrs.detach().cpu().numpy().reshape(-1, 128)        
     
-        def compute_des_batches(self, patches):
+    def compute_des_batches(self, patches):
         n_batches = int(len(patches) / self.batch_size) + 1
         descriptors_for_net = np.zeros((len(patches), 128))
         for i in range(0, len(patches), self.batch_size):
