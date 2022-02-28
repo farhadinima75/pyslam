@@ -50,19 +50,20 @@ class SosnetFeature2D:
         
         # mag_factor is how many times the original keypoint scale
         # is enlarged to generate a patch from a keypoint
-        self.mag_factor = 3        
+        self.mag_factor = 3   
+        self.batch_size = 1024
         
         print('==> Loading pre-trained network.')
         #init tfeat and load the trained weights
         self.model = sosnet_model.SOSNet32x32()
         self.net_name = 'liberty'   # liberty, hpatches_a, notredame, yosemite  (see folder /thirdparty/SOSNet/sosnet-weights)
-        self.model.load_state_dict(torch.load(os.path.join(self.model_base_path, 'sosnet-weights', "sosnet-32x32-" + self.net_name + ".pth")))
+        self.model.load_state_dict(torch.load(os.path.join(self.model_base_path, 'sosnet-weights', "sosnet-32x32-" + self.net_name + ".pth"), map_location=torch.device('cpu')))
         if self.do_cuda:
             self.model.cuda()
             print('Extracting on GPU')
         else:
             print('Extracting on CPU')
-            self.model = model.cpu()        
+            self.model.cpu()        
         self.model.eval()  
         print('==> Successfully loaded pre-trained network.')
     
@@ -76,6 +77,20 @@ class SosnetFeature2D:
             descrs = self.model(patches)
         return descrs.detach().cpu().numpy().reshape(-1, 128)        
     
+    def compute_des_batches(self, patches):
+        n_batches = int(len(patches) / self.batch_size) + 1
+        descriptors_for_net = np.zeros((len(patches), 128))
+        for i in range(0, len(patches), self.batch_size):
+            data_a = patches[i: i + self.batch_size, :, :, :].astype(np.float32)
+            data_a = torch.from_numpy(data_a)
+            if self.do_cuda:
+                data_a = data_a.cuda()
+            data_a = Variable(data_a)
+            # compute output
+            with torch.no_grad():
+                out_a = self.model(data_a)
+            descriptors_for_net[i: i + self.batch_size,:] = out_a.data.cpu().numpy().reshape(-1, 128) 
+        return descriptors_for_net   
     
     def compute(self, frame, kps, mask=None):  #mask is a fake input  
         #print('kps: ', kps)
@@ -95,7 +110,7 @@ class SosnetFeature2D:
             #if kVerbose:                         
             #    print('patch elapsed: ', time.time()-t)
             # compute descriptor by feeeding the full patch tensor to the network              
-            des = self.compute_des(patches)            
+            des = self.compute_des_batches(patches)            
         else:
             des = []
         if kVerbose:
