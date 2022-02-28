@@ -254,14 +254,14 @@ class KeyNetDescFeature2D:
 
         # Define Pytorch HardNet
         self.model = HardNet()
-        checkpoint = torch.load(self.keynet_config.pytorch_hardnet_dir)
+        checkpoint = torch.load(self.keynet_config.pytorch_hardnet_dir, map_location=torch.device('cpu'))
         self.model.load_state_dict(checkpoint['state_dict'])
         if self.do_cuda:
             self.model.cuda()
             print('Extracting torch model on GPU')
         else:
             print('Extracting torch model on CPU')
-            self.model = model.cpu()        
+            self.model.cpu()        
         self.model.eval()         
 
         # Define variables
