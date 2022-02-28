@@ -204,14 +204,14 @@ class LogpolarFeature2D:
                     is_desc256=cfg.TEST.IS_DESC_256,
                     orientCorrect=cfg.TEST.ORIENT_CORRECTION)
         
-        self.checkpoint = torch.load(self.model_weights_path)
+        self.checkpoint = torch.load(self.model_weights_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(self.checkpoint['state_dict'])
         if self.do_cuda:
             self.model.cuda()
             print('Extracting on GPU')
         else:
             print('Extracting on CPU')
-            self.model = model.cpu()        
+            self.model.cpu()        
         self.model.eval()            
         print('==> Successfully loaded pre-trained network.')            
                   
