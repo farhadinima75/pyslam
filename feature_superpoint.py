@@ -72,7 +72,7 @@ def transpose_des(des):
 class SuperPointFeature2D: 
     def __init__(self, do_cuda=True): 
         self.lock = RLock()
-        self.opts = SuperPointOptions(do_cuda)
+        self.opts = SuperPointOptions(do_cuda & torch.cuda.is_available())
         print(self.opts)        
         
         print('SuperPointFeature2D')
