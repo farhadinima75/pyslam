@@ -42,7 +42,7 @@ kVerbose = True
 
 
 def load_network(model_fn): 
-    checkpoint = torch.load(model_fn)
+    checkpoint = torch.load(model_fn, map_location=torch.device('cpu'))
     print("\n>> Creating net = " + checkpoint['net']) 
     net = eval(checkpoint['net'])
     nb_of_weights = common.model_size(net)
@@ -185,7 +185,7 @@ class R2d2Feature2D:
         self.max_scale = max_scale            
         self.reliability_thr = reliability_thr
         self.repeatability_thr = repeatability_thr
-        self.do_cuda = do_cuda
+        self.do_cuda = do_cuda & torch.cuda.is_available()
         if do_cuda:                  
             gpus = [0]
         else:
