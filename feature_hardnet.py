@@ -132,7 +132,7 @@ class HardnetFeature2D:
             print('Extracting on GPU')
         else:
             print('Extracting on CPU')
-            self.model = model.cpu()        
+            self.model.cpu()        
         self.model.eval()            
         print('==> Successfully loaded pre-trained network.')            
             
