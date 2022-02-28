@@ -104,8 +104,8 @@ class D2NetFeature2D:
         # Creating CNN model
         self.model = D2Net(
             model_file=self.models_path,
-            use_relu=use_relu,
-            use_cuda=do_cuda)
+            use_relu=self.use_relu,
+            use_cuda=self.do_cuda)
         if self.do_cuda:
             print('Extracting on GPU')
         else:
