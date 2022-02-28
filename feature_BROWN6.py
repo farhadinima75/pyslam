@@ -102,9 +102,9 @@ class HardNet(nn.Module):
     
     
 # interface for pySLAM
-class HardnetFeature2D: 
+class BROWN6Feature2D: 
     def __init__(self, do_cuda=True):    
-        print('Using HardnetFeature2D')         
+        print('Using BROWN6Feature2D')         
         self.model_base_path = config.cfg.root_folder + '/thirdparty/hardnet/'        
         self.model_weights_path = self.model_base_path + 'pretrained/6Brown/hardnetBr6.pth'
         #print('model_weights_path:',self.model_weights_path)
