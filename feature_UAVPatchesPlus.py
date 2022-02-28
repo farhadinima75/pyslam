@@ -198,6 +198,6 @@ class UAVPatchesPlusFeature2D:
                     print('patch elapsed: ', time.time()-t)
                 des = self.compute_des(patches)
         if kVerbose:
-            print('descriptor: HARDNET, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
+            print('descriptor: UAVPatchesPlus, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
         return kps, des
     
