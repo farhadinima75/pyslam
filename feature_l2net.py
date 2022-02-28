@@ -130,7 +130,7 @@ class L2NetFeature2D:
         
         print('==> Loading pre-trained network.')        
         self.model = L2Net()
-        self.checkpoint = torch.load(self.model_weights_path)
+        self.checkpoint = torch.load(self.model_weights_path, map_location=torch.device('cpu'))
         #self.model.load_state_dict(self.checkpoint['state_dict']) 
         self.model.load_state_dict(self.checkpoint)        
         if self.do_cuda:
@@ -138,7 +138,7 @@ class L2NetFeature2D:
             print('Extracting on GPU')
         else:
             print('Extracting on CPU')
-            self.model = model.cpu()        
+            self.model.cpu()        
         self.model.eval()            
         print('==> Successfully loaded pre-trained network.')            
             
