@@ -80,12 +80,13 @@ class SosnetFeature2D:
     def compute_des_batches(self, patches):
         n_batches = int(len(patches) / self.batch_size) + 1
         descriptors_for_net = np.zeros((len(patches), 128))
+        patches = torch.from_numpy(patches).float()
+        patches = torch.unsqueeze(patches,1)
         for i in range(0, len(patches), self.batch_size):
-            data_a = patches[i: i + self.batch_size, :, :, :].astype(np.float32)
-            data_a = torch.from_numpy(data_a)
+            data_a = patches[i: i + self.batch_size, :, :, :]
             if self.do_cuda:
                 data_a = data_a.cuda()
-            data_a = Variable(data_a)
+            # data_a = Variable(data_a)
             # compute output
             with torch.no_grad():
                 out_a = self.model(data_a)
