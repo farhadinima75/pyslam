@@ -223,7 +223,8 @@ class LogpolarFeature2D:
         pts = np.array([kp.pt for kp in kps])
         scales = np.array([kp.size for kp in kps])
         oris = np.array([kp.angle for kp in kps])
-                       
+        
+        cfg.TEST.PAD_TO = float(np.max(img.shape))
         # Mirror-pad the image to avoid boundary effects
         if any([s > cfg.TEST.PAD_TO for s in img.shape[:2]]):
             raise RuntimeError(
