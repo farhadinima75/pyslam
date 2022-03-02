@@ -178,6 +178,8 @@ class DiskFeature2D:
         print('Using DiskFeature2D')   
         self.lock = RLock()
         
+        self.OutWidth = None
+        self.OutHeight = None
         self.num_features = num_features
         self.nms_window_size = nms_window_size
         self.desc_dim = desc_dim 
@@ -236,6 +238,7 @@ class DiskFeature2D:
             extract = partial(model.features, kind='rng')
             
         self.use_crop = False
+        if self.OutWidth is not None:  image = cv2.resize(image, (self.OutWidth, self.OutHeight))
         height, width, channels = image.shape
         cropx = width % 16
         cropy = height % 16
@@ -252,7 +255,7 @@ class DiskFeature2D:
         else:
             image_adapter = ImageAdapter(image)
         bitmaps, images = image_adapter.stack()
-        
+        print('=================',self.use_crop, len(images), bitmaps.shape)
         bitmaps = bitmaps.to(self.DEV, non_blocking=True)
 
         with torch.no_grad():
