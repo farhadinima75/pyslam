@@ -24,7 +24,7 @@ config.cfg.set_lib('lfnet',prepend=True)
   
 import os
 import sys
-import time
+import time, shutil
 
 
 from threading import RLock
@@ -154,13 +154,21 @@ def build_lfnet_config():
     tmp_config, unparsed = get_config(parser)
 
     if len(unparsed) > 0:
-        raise ValueError('Miss finding argument: unparsed={}\n'.format(unparsed))
+        print('Miss finding argument: unparsed={}\n'.format(unparsed))
 
     # restore other hyperparams to build model
     if os.path.isdir(tmp_config.model):
         config_path = os.path.join(tmp_config.model, 'config.pkl')
     else:
         config_path = os.path.join(os.path.dirname(tmp_config.model), 'config.pkl')
+    
+    if not os.path.isfile(config_path):
+      ModelPath = 'https://www.cs.ubc.ca/research/kmyi_data/files/2018/lf-net/lfnet-norotaug.tar.gz'
+      os.system(f"wget -O {config_path.replace('config.pkl', 'Model.tar.gz')} {ModelPath}")
+      shutil.unpack_archive(config_path.replace('config.pkl', 'Model.tar.gz'), config_path.replace('config.pkl', ''))
+      config_path = os.path.join(config_path.replace('config.pkl', ''), 'lfnet-norotaug')
+      config_path = os.path.join(config_path, 'config.pkl')
+
     try:
         with open(config_path, 'rb') as f:
             lfnet_config = pickle.load(f)
