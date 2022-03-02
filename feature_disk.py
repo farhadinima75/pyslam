@@ -238,7 +238,8 @@ class DiskFeature2D:
             extract = partial(model.features, kind='rng')
             
         self.use_crop = False
-        if self.OutWidth is not None:  image = cv2.resize(image, (self.OutWidth, self.OutHeight))
+        if self.OutWidth is not None and np.sum([self.OutWidth, self.OutHeight]) < np.sum(image.shape[:-1]):  
+          image = cv2.resize(image, (self.OutWidth, self.OutHeight))
         height, width, channels = image.shape
         cropx = width % 16
         cropy = height % 16
