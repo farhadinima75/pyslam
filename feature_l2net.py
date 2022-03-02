@@ -126,7 +126,7 @@ class L2NetFeature2D:
         
         # inference batch size        
         self.batch_size = 512 
-        self.process_all = True # process all the patches at once           
+        self.process_all = False # process all the patches at once           
         
         print('==> Loading pre-trained network.')        
         self.model = L2Net()
