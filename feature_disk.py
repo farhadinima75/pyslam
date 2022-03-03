@@ -178,8 +178,8 @@ class DiskFeature2D:
         print('Using DiskFeature2D')   
         self.lock = RLock()
         
-        self.OutWidth = None
-        self.OutHeight = None
+        self.OutWidthMultiplier = None
+        self.OutHeightMultiplier = None
         self.num_features = num_features
         self.nms_window_size = nms_window_size
         self.desc_dim = desc_dim 
@@ -238,8 +238,6 @@ class DiskFeature2D:
             extract = partial(model.features, kind='rng')
             
         self.use_crop = False
-        if self.OutWidth is not None and np.sum([self.OutWidth, self.OutHeight]) < np.sum(image.shape[:-1]):  
-          image = cv2.resize(image, (self.OutWidth, self.OutHeight))
         height, width, channels = image.shape
         cropx = width % 16
         cropy = height % 16
