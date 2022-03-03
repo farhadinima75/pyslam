@@ -67,8 +67,8 @@ class GeodescFeature2D:
         self.mag_factor = 3
         
         # inference batch size        
-        self.batch_size = 512 
-        self.process_all = True # process all the patches at once   
+        self.batch_size = 1024 
+        self.process_all = False # process all the patches at once   
         
         self.model_base_path = config.cfg.root_folder + '/thirdparty/geodesc/'
         self.model_path = self.model_base_path + 'model/geodesc.pb'
