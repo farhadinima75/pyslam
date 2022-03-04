@@ -50,7 +50,7 @@ class SosnetFeature2D:
         
         # mag_factor is how many times the original keypoint scale
         # is enlarged to generate a patch from a keypoint
-        self.mag_factor = 3   
+        self.mag_factor = 12   
         self.batch_size = 1024
         
         print('==> Loading pre-trained network.')
