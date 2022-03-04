@@ -102,11 +102,11 @@ class HardNet(nn.Module):
     
     
 # interface for pySLAM
-class UAVPatchesPlusFeature2D: 
+class UAVPatchesFeature2D: 
     def __init__(self, do_cuda=True):    
-        print('Using UAVPatchesPlusFeature2D')         
+        print('Using UAVPatchesFeature2D')         
         self.model_base_path = config.cfg.root_folder + '/thirdparty/hardnet/'        
-        self.model_weights_path = './Pretrained/UAVPatches+.pth'
+        self.model_weights_path = './Pretrained/UAVPatches.pth'
         #print('model_weights_path:',self.model_weights_path)
         
         self.do_cuda = do_cuda & torch.cuda.is_available()
@@ -198,6 +198,5 @@ class UAVPatchesPlusFeature2D:
                     print('patch elapsed: ', time.time()-t)
                 des = self.compute_des(patches)
         if kVerbose:
-            print('descriptor: UAVPatchesPlus, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
+            print('descriptor: UAVPatches, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
         return kps, des
-    
