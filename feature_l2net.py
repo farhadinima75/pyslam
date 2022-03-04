@@ -122,7 +122,7 @@ class L2NetFeature2D:
                         
         # mag_factor is how many times the original keypoint scale
         # is enlarged to generate a patch from a keypoint        
-        self.mag_factor = 1.0
+        self.mag_factor = 12.0
         
         # inference batch size        
         self.batch_size = 512 
