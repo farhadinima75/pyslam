@@ -121,7 +121,7 @@ class FeatureManager(object):
                                           #                          -1: start pyramid from up-scaled image*scale_factor (as in SIFT)
         self.scale_factor = scale_factor  # scale factor bewteen two octaves 
         self.sigma_level0 = kSigmaLevel0  # sigma on first octave 
-        self.layers_per_octave = 3        # for methods that uses octaves (SIFT, SURF, etc)
+        self.layers_per_octave = 5        # for methods that uses octaves (SIFT, SURF, etc)
         
         # feature norm options  
         self.norm_type = None            # descriptor norm type 
@@ -269,7 +269,7 @@ class FeatureManager(object):
         # init detector 
         # --------------------------------------------- #
         if self.detector_type == FeatureDetectorTypes.SIFT or self.detector_type == FeatureDetectorTypes.ROOT_SIFT:    
-            sift = self.SIFT_create(nOctaveLayers=self.layers_per_octave)  
+            sift = self.SIFT_create(nOctaveLayers=self.layers_per_octave, contrastThreshold=0.00667)  
             self.set_sift_parameters()
             if self.detector_type == FeatureDetectorTypes.ROOT_SIFT:        
                 self._feature_detector = RootSIFTFeature2D(sift)  
