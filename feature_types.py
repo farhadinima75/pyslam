@@ -94,6 +94,8 @@ class FeatureDescriptorTypes(Enum):
     BROWN6          = 30  # ------
     UAVPatches      = 31  # ------
     UAVPatchesPlus  = 32  # ------
+    HyNet           = 33  # ------
+    MKDDescriptor   = 34  # ------
     
 class FeatureInfo(object): 
     norm_type = dict() 
@@ -164,6 +166,12 @@ class FeatureInfo(object):
     #
     norm_type[FeatureDescriptorTypes.UAVPatchesPlus] = cv2.NORM_L2    
     max_descriptor_distance[FeatureDescriptorTypes.UAVPatchesPlus] = 1.8       # HARDNET          
+    #
+    norm_type[FeatureDescriptorTypes.MKDDescriptor] = cv2.NORM_L2    
+    max_descriptor_distance[FeatureDescriptorTypes.MKDDescriptor] = 1.8       # HARDNET          
+    #
+    norm_type[FeatureDescriptorTypes.HyNet] = cv2.NORM_L2    
+    max_descriptor_distance[FeatureDescriptorTypes.HyNet] = 1.8       # HARDNET          
     #
     norm_type[FeatureDescriptorTypes.GEODESC] = cv2.NORM_L2             # unless GeodescFeature2D.quantize == True 
     max_descriptor_distance[FeatureDescriptorTypes.GEODESC] = 0.4       # GEODESC         
