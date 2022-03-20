@@ -291,5 +291,5 @@ class HyNetFeature2D:
                     print('patch elapsed: ', time.time()-t)
                 des = self.compute_des(patches)
         if kVerbose:
-            print('descriptor: UAVPatches, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
+            print('descriptor: HyNet, #features: ', len(kps), ', frame res: ', img.shape[0:2])                  
         return kps, des
