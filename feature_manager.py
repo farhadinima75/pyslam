@@ -46,6 +46,8 @@ HardnetFeature2D = import_from('feature_hardnet', 'HardnetFeature2D')
 BROWN6Feature2D = import_from('feature_BROWN6', 'BROWN6Feature2D')
 UAVPatchesFeature2D = import_from('feature_UAVPatches', 'UAVPatchesFeature2D')
 UAVPatchesPlusFeature2D = import_from('feature_UAVPatchesPlus', 'UAVPatchesPlusFeature2D')
+MKDDescriptorFeature2D = import_from('feature_MKDDescriptor', 'MKDDescriptorFeature2D')
+HyNetFeature2D = import_from('feature_HyNet', 'HyNetFeature2D')
 GeodescFeature2D = import_from('feature_geodesc', 'GeodescFeature2D')
 SosnetFeature2D = import_from('feature_sosnet', 'SosnetFeature2D')
 if False:
@@ -613,6 +615,14 @@ class FeatureManager(object):
                 self._feature_descriptor = UAVPatchesPlusFeature2D(do_cuda=True)        
                 #
                 #      
+            elif self.descriptor_type == FeatureDescriptorTypes.HyNet:              
+                self._feature_descriptor = HyNetFeature2D(do_cuda=True)        
+                #
+                #      
+            elif self.descriptor_type == FeatureDescriptorTypes.MKDDescriptor:              
+                self._feature_descriptor = MKDDescriptorFeature2D(do_cuda=True)        
+                #
+                #   
             elif self.descriptor_type == FeatureDescriptorTypes.GEODESC:              
                 self._feature_descriptor = GeodescFeature2D()        
                 #
